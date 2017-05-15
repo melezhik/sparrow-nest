@@ -1,2 +1,3 @@
-local/
-cpanfile.snapshot
+public/index.txt
+cpanfile.*
+local
