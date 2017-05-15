@@ -1,15 +1,15 @@
-#!/usr/bin/env perl
-
 use Mojolicious::Lite;
 use strict;
-use Carp;
-use Mojo::Log;
 
-get '/' => sub {
-  my $c   = shift;
-  
-  $c->redirect_to->('/index.txt');
+get '/index' => sub {
+  my $c = shift;
+  system('touch public/index.txt') unless -f 'public/index.txt';
+  $c->reply->static('index.txt');
 };
 
-# Start the Mojolicious command system
+get '/' => sub {
+  my $c = shift;
+  $c->redirect_to('index');
+};
+
 app->start;
