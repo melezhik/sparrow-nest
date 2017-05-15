@@ -20,17 +20,23 @@ custom sparrow plugins might be accessible at a target machine ( see `sparrow cl
 
     $ nestd start # start nestd daemon
 
-API:
+***API***:
 
 ## get repository listing (index)
+
+`GET /`
 
     curl 127.0.0.1:4441
 
 ## add plugin to the list (index)
 
+`POST -d plugin-name=plugin-name -d `url=$git-remote-url`
+
     curl -d plugin-name=df-check -d url=https://github.com/melezhik/df-check.git 127.0.0.1:4441
 
 ## remove plugin from the list (index)
+
+`DELETE -d plugin-name=$plugin-name`
 
     curl -X DELETE -d plugin-name=df-check 127.0.0.1:4441
 
