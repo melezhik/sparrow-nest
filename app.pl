@@ -67,4 +67,10 @@ sub write_index {
   return;
 };
 
+post '/purge' => sub {
+    my $c = shift;
+    system('echo > public/index.txt');
+    $c->render(text => "index purged OK\n")
+};
+
 app->start;
