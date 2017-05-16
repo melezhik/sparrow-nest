@@ -39,7 +39,7 @@ custom sparrow plugins might be accessible at a target machine ( see `sparrow cl
 
 *POST /delete -d plugin-name=$plugin-name*
 
-    curl -d name=df-check -d url=https://github.com/melezhik/df-check.git  -L  127.0.0.1:4441/delete
+    curl -d name=df-check -L  127.0.0.1:4441/delete
 
 ### Sparrow client setup
 

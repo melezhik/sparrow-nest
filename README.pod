@@ -68,7 +68,7 @@ I<POST /add -d plugin-name=plugin-name -d url=$git-remote-url>
 
 I<POST /delete -d plugin-name=$plugin-name>
 
-    curl -d name=df-check -d url=https://github.com/melezhik/df-check.git  -L  127.0.0.1:4441/delete
+    curl -d name=df-check -L  127.0.0.1:4441/delete
 
 
 =head3 Sparrow client setup
@@ -80,6 +80,59 @@ On target machine, given a nestd accessible as 192.168.0.1:4441
 Then get custom repository by:
 
     $ sparrow index update 
+
+
+=head1 nestd daemon
+
+C<nestd> is daemon to start customer repository manager.
+
+    nestd $action %options
+
+
+=head2 Action
+
+=over
+
+=item *
+
+C<start> - start daemon
+
+
+=item *
+
+C<stop> - stop daemon
+
+
+=item *
+
+C<restart> - restart daemon
+
+
+=back
+
+
+=head2 Options
+
+=over
+
+=item *
+
+C<--host> - sets host
+
+
+=item *
+
+C<--port> - sets port
+
+
+=back
+
+Examples:
+
+    nestd start
+    nestd start --host 0.0.0.0 --port 4442
+    nestd restart
+    nestd stop
 
 
 =head1 See also
