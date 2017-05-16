@@ -6,4 +6,4 @@ install:
     - cpanm swat
     - cpanm --installdeps . && perl Makefile.PL && make test && sudo make install
 
-script: "nestd start --host 127.0.0.1 --port 4441 && nestd status && swat ./swat && nestd stop"
+script: "nestd start --host 127.0.0.1 --port 4441 && nestd status && swat ./swat && nestd restart && nestd stop"
