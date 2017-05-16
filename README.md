@@ -19,14 +19,15 @@ custom sparrow plugins might be accessible at a target machine ( see `sparrow cl
 # Usage
 
     $ nestd start # start nestd daemon
-
+    $ nestd stop  # stop nestd daemon
+  
 ## API 
 
 ### get repository listing (index)
 
 *GET /*
 
-    curl -L 127.0.0.1:4441
+    curl 127.0.0.1:4441
 
 ### add plugin to the list (index)
 

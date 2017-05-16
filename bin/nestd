@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+
+my $action = shift @ARGV;
+
+if ($action eq "start") { 
+
+  exec "plackup $0.psgi -D -m production --host 0.0.0.0 --port 4441 --pid ~/nestd.pid -s Starman"
+  #exec "perl $0.psgi --help"
+
+} elsif ($action eq "stop") {
+  system('kill `cat ~/nestd.pid`')
+}
+
+

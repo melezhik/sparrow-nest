@@ -1,15 +1,17 @@
+#!/usr/bin/env perl
+
 use Mojolicious::Lite;
 use strict;
 
-get '/index' => sub {
-  my $c = shift;
-  system('touch public/index.txt') unless -f 'public/index.txt';
-  $c->reply->static('index.txt');
-};
+my $index_file = "$ENV{HOME}/nest.index";
+system("touch $index_file") unless -f $index_file;
 
 get '/' => sub {
   my $c = shift;
-  $c->redirect_to('index');
+  open F, $index_file or die "can't open $index_file to read: $!";
+  my @out = <F>;
+  close F;
+  $c->render(text => join "", @out );
 };
 
 post '/add' => sub {
@@ -40,15 +42,13 @@ post '/delete' => sub {
 };
 
 sub read_index {
-  system('touch public/index.txt') unless -f 'public/index.txt';
-  open F, "public/index.txt" or die "can't open public/index.txt to read: $!";
+  open F, $index_file or die "can't open $index_file to read: $!";
   my %index;
   while (my $i = <F>){
     chomp $i;
-    my ($name,$url) =  split /\s+/, $i;
-    next unless $name;
-    next unless $url;
-    $index{$name} = {$url};
+    if ($i=~/(\S+)\s+(\S+)/){
+      $index{$1} = $2;
+    };
   }    
   close F;  
   return %index;
@@ -56,8 +56,7 @@ sub read_index {
 
 sub write_index {
   my $index = shift;
-  system('touch public/index.txt') unless -f 'public/index.txt';
-  open F, '>', "public/index.txt" or die "can't open public/index.txt to write: $!";
+  open F, '>', $index_file or die "can't open $index_file to write: $!";
   for my $name (keys %{$index}){
     my $url = $index->{$name};
     next unless $url;
@@ -69,7 +68,7 @@ sub write_index {
 
 post '/purge' => sub {
     my $c = shift;
-    system('echo > public/index.txt');
+    system("echo > $index_file");
     $c->render(text => "index purged OK\n")
 };
 
