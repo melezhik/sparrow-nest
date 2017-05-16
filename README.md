@@ -12,10 +12,13 @@ This is a simple specification and implementation of Sparrow custom repositories
 * [Sparrow client](https://github.com/melezhik/sparrow#sparrow-client) requests a custom repository index so that
 custom sparrow plugins might be accessible at a target machine ( see `sparrow client setup` section )
 
+# Build status
+
+[![Build Status](https://travis-ci.org/melezhik/sparrow-nest.svg)](https://travis-ci.org/melezhik/sparrow-nest)
+
 # Install
 
     $ cpanm Sparrow::Nest
-
 # Usage
 
     $ nestd start # start nestd daemon
