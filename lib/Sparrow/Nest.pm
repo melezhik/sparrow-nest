@@ -47,6 +47,11 @@ custom sparrow plugins might be accessible at a target machine ( see C<sparrow c
 =back
 
 
+=head1 Build status
+
+L<![Build Status](https://travis-ci.org/melezhik/sparrow-nest.svg)|https://travis-ci.org/melezhik/sparrow-nest>
+
+
 =head1 Install
 
     $ cpanm Sparrow::Nest
