@@ -51,6 +51,30 @@ Then get custom repository by:
 
     $ sparrow index update 
 
+# nestd daemon
+
+`nestd` is daemon to start customer repository manager.
+
+    nestd $action %options
+
+## Action
+
+* `start` - start daemon
+* `stop` - stop daemon
+* `restart` - restart daemon
+
+## Options
+
+* `--host` - sets host
+* `--port` - sets port
+
+Examples:
+
+    nestd start
+    nestd start --host 0.0.0.0 --port 4442
+    nestd restart
+    nestd stop
+
 # See also
 
 [Sparrow](https://github.com/melezhik/sparrow)

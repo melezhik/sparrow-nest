@@ -1,14 +1,40 @@
 #!/usr/bin/env perl
 
-my $action = shift @ARGV;
+use strict;
+
+my $action  = shift @ARGV;
+my %options =  @ARGV;
+
+$options{'--port'} ||= 4441;
+$options{'--host'} ||= '0.0.0.0';
+print "nestd start with options: --host $options{'--host'} --port $options{'--port'} ...\n";
 
 if ($action eq "start") { 
-
-  exec "plackup $0.psgi -D -m production --host 0.0.0.0 --port 4441 --pid ~/nestd.pid -s Starman"
-  #exec "perl $0.psgi --help"
-
+  start_nestd();
 } elsif ($action eq "stop") {
-  system('kill `cat ~/nestd.pid`')
+  stop_nestd();
+} elsif ($action eq "restart") {
+  stop_nestd();
+  start_nestd();
+} elsif ($action eq "status") {
+  if (status_nestd()){
+    print "netstat is running ...\n";
+  }else{
+    print "netstat is stopped ...\n";
+    exit(1)
+  }
 }
 
+sub start_nestd {
+  exec "plackup $0.psgi -D -m production --host $options{'--host'} --port $options{'--port'} --pid ~/nestd.pid -s Starman"
+}
 
+sub stop_nestd {
+  system('kill `cat ~/nestd.pid` 2>/dev/null') == 0
+}
+
+sub status_nestd {
+  system('ps --pid `cat ~/nestd.pid 2>/dev/null` 1>/dev/null 2>/dev/null') == 0
+}
+
+  
