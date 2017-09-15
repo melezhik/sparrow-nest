@@ -8,5 +8,5 @@ module_run 'Cpanm::GitHub', %(
 bash "nestd stop";
 bash "nestd start --port 80";
 bash "nestd status", %(
-  expect_stdout => 'running'
+  expect_stdout => 'nestd is running'
 );
