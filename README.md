@@ -18,7 +18,12 @@ custom sparrow plugins might be accessible at a target machine ( see `sparrow cl
 
 # Install
 
-    $ cpanm Sparrow::Nest
+There is no CPAN module for Sparrow::Nest yet, so the preferred and easiest way to installis by sparrowdo:
+ 
+    $ git clone https://github.com/melezhik/sparrow-nest.git
+    $ cd sparrow-nest 
+    $ sparrowdo --host=$host --sparrowfile=install.pl6
+  
 # Usage
 
     $ nestd start # start nestd daemon

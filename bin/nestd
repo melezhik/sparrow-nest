@@ -17,9 +17,9 @@ if ($action eq "start") {
   start_nestd();
 } elsif ($action eq "status") {
   if (status_nestd()){
-    print "netstat is running ...\n";
+    print "nestd is running ...\n";
   }else{
-    print "netstat is stopped ...\n";
+    print "nestd is stopped ...\n";
     exit(1)
   }
 }
